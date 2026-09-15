@@ -23,3 +23,6 @@ build/
 *.tsbuildinfo
 npm-debug.log*
 .claude/settings.local.json
+
+# Frontend build output - rebuilt by the Docker image / npm run build, not committed
+/wwwroot/

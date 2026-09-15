@@ -37,6 +37,7 @@
     "exclude": [
         "vite.config.ts",
         "../node_modules/**",
-        "../wwwroot/**"
+        "../wwwroot/**",
+        "../clients/**"
     ]
 }

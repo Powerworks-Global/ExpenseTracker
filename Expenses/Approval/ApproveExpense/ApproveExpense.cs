@@ -23,7 +23,11 @@ public record ExpenseStatus(
     string? ApprovedBy,
     string? ApprovalReason,
     string? TransactionReference,
-    EventSourceId EventSourceId);
+    EventSourceId EventSourceId)
+{
+    public static ISubject<IEnumerable<ExpenseStatus>> AllExpenses(IMongoCollection<ExpenseStatus> collection) =>
+        collection.Observe();
+}
 
 public class ExpenseStatusProjection : IProjectionFor<ExpenseStatus>
 {
