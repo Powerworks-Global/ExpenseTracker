@@ -26,5 +26,6 @@
     <ItemGroup>
         <PackageReference Include="Cratis" Version="22.10.4" />
         <PackageReference Include="Cratis.Arc.MongoDB" Version="22.10.4" />
+        <PackageReference Include="Google.Cloud.Storage.V1" Version="4.10.0" />
     </ItemGroup>
 </Project>
