@@ -3,6 +3,7 @@ builder.AddCratis(
     configureChronicleBuilder: chronicleBuilder => chronicleBuilder.WithCamelCaseNamingPolicy(),
     configureArcBuilder: arcBuilder => arcBuilder.WithMongoDB(configureMongoDB: builder => builder.WithCamelCaseNamingPolicy()));
     
+builder.Services.AddSingleton<CratisApp.Expenses.Payout.IPaymentGateway, CratisApp.Expenses.Payout.MockPaymentGateway>();
 builder.Services.AddControllers();
 builder.Services.AddMvc();
 builder.Services.AddEndpointsApiExplorer();

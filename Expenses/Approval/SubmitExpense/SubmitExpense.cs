@@ -8,18 +8,18 @@ using FluentValidation;
 using Microsoft.Extensions.Configuration;
 
 [Command]
-public record SubmitExpense(decimal Amount, string Description)
+public record SubmitExpense(decimal Amount, string Description, string Category, DateOnly Date, bool IsBusinessExpense, string? ReceiptUrl)
 {
     public (ExpenseId, ExpenseSubmitted) Handle()
     {
         var eventSourceId = ExpenseId.New();
 
-        return (eventSourceId, new(Amount, Description));
+        return (eventSourceId, new(Amount, Description, Category, Date, IsBusinessExpense, ReceiptUrl));
     }
 }
 
 [EventType]
-public record ExpenseSubmitted(decimal Amount, string Description);
+public record ExpenseSubmitted(decimal Amount, string Description, string Category, DateOnly Date, bool IsBusinessExpense, string? ReceiptUrl);
 
 public class SubmitExpenseValidator : CommandValidator<SubmitExpense>
 {
@@ -27,6 +27,7 @@ public class SubmitExpenseValidator : CommandValidator<SubmitExpense>
     {
         RuleFor(c => c.Amount).GreaterThan(0).WithMessage("Amount must be greater than zero");
         RuleFor(c => c.Description).NotEmpty().WithMessage("Description is required");
+        RuleFor(c => c.Category).NotEmpty().WithMessage("Category is required");
     }
 }
 
